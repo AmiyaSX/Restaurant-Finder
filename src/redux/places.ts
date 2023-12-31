@@ -15,7 +15,6 @@ const placesSlice = createSlice({
   reducers: {
     setRestaurants(state, action: PayloadAction<any[]>) {
       state.restaurants = action.payload;
-
     },
   },
 });
