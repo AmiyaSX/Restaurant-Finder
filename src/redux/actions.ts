@@ -1,4 +1,3 @@
-// src/redux/actions.ts
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from './store';
 import { Action } from '@reduxjs/toolkit';
@@ -30,7 +29,8 @@ export const fetchNearbyRestaurants = (lat: number, lng: number):
   ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch) => {
     try {
       const response = await fetch(
-        `${BASE_URL}nearbysearch/json?location=${lat},${lng}&rankby=distance&type=restaurant&key=${getKey()}`
+        // `${BASE_URL}nearbysearch/json?location=${lat},${lng}&rankby=distance&type=restaurant&key=AIzaSyDWyJN1vYJrAubU_8g1_4ooaStSCmrOhd8`
+        `${BASE_URL}nearbysearch/json?location=${lat},${lng}&radius=1000&type=restaurant&key=AIzaSyDWyJN1vYJrAubU_8g1_4ooaStSCmrOhd8`
       );
 
       const data = await response.json();
@@ -40,27 +40,28 @@ export const fetchNearbyRestaurants = (lat: number, lng: number):
         data.results.map(async (restaurant: any) => {
           // Fetch details for each place, including photos
           const placeDetailsResponse = await fetch(
-            `${BASE_URL}details/json?place_id=${restaurant.place_id}&fields=name,formatted_address,geometry,photo&key=${getKey()}`
+            `${BASE_URL}details/json?place_id=${restaurant.place_id}&fields=name,formatted_address,geometry,photo&key=AIzaSyDWyJN1vYJrAubU_8g1_4ooaStSCmrOhd8`
           );
           const placeDetails = await placeDetailsResponse.json();
   
           const photoReference = placeDetails.result.photos?.[0]?.photo_reference;
           const photoUrl = photoReference
-            ? `${BASE_URL}photo?maxwidth=400&photoreference=${photoReference}&key=${getKey()}`
+            ? `${BASE_URL}photo?maxwidth=400&photoreference=${photoReference}&key=AIzaSyDWyJN1vYJrAubU_8g1_4ooaStSCmrOhd8`
             : null;
   
           return {
+            id: restaurant.id,
             name: restaurant.name,
             vicinity: restaurant.vicinity,
             distance: calculateDistance(
               {lat, lng},
               restaurant.geometry.location
             ),
+            geometry: restaurant.geometry,
             photoUrl,
           };
         })
       );
-      // dispatch(setRestaurants(data.results));
       dispatch(setRestaurants(restaurantsWithDetails));
     } catch (error) {
       console.error('Error fetching nearby restaurants:', error);
