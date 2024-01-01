@@ -13,13 +13,20 @@ Try it here: https://restaurant-finder-409709.web.app
 npm install
 ```
 
-2. Start development server
+2. Create config.ts file and put your own google place api key in it
+
+```
+const key = "YOUR KEY";
+export default key;
+```
+
+3. Start development server
 
 ```
 npm start
 ```
 
-3. You can find the application running on
+4. You can find the application running on
 
 http://localhost:3000
 
