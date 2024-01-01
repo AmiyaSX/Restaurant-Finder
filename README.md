@@ -5,6 +5,10 @@ Use TypeScript, create-react-app, google places api create an SPA which will sho
 
 Try it here: https://restaurant-finder-409709.web.app
 
+## CORS Problem
+*If your browser doesn't allow CORS, you wont see any data successfully fetched. 
+The easy way is to add Allow CORS extension on your browser, restart and it shall work.
+
 ## How to Setup
 
 1. Install packages and dependencies
