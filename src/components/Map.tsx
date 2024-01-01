@@ -51,7 +51,7 @@ const Map: React.FC<MapProps> = ({ userLocation, restaurants, selectedRestaurant
             <InfoWindow>
               <div>
                 <img
-                  src={restaurant.photoUrl || DefaultImage}
+                  src={restaurant.photoUrl ?? DefaultImage}
                   alt={restaurant.name}
                   style={{ maxWidth: '100px', maxHeight: '100px' }}
                 />

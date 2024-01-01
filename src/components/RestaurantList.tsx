@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import DefaultImage from "../assets/image.jpg";
 import { LoadScript } from '@react-google-maps/api';
 import Map from './Map';
+import key from "../config";
+
 import "../style.css";
 
 const RestaurantList: React.FC = () => {
@@ -39,11 +41,12 @@ const RestaurantList: React.FC = () => {
   }, [dispatch, userLocation]);
   const handleSelectRestaurant = (restaurantId: string | null) => {
     setSelectedRestaurantId(restaurantId);
+    console.log(restaurantId);
   };
   return (
     <div>
       <h2>Nearby Restaurants</h2>
-      <LoadScript googleMapsApiKey="AIzaSyDWyJN1vYJrAubU_8g1_4ooaStSCmrOhd8">
+      <LoadScript googleMapsApiKey={key}>
         <Map
           userLocation={userLocation}
           restaurants={restaurants}
