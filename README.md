@@ -1,9 +1,6 @@
 # Restaurant-Finder
-Cruncho internship - assignment  
 
 Use TypeScript, create-react-app, google places api create an SPA which will show a list of 10 nearby restaurants and the distance in kilometers from your current location.  
-
-Try it here: https://restaurant-finder-409709.web.app
 
 ## CORS Problem
 *If your browser doesn't allow CORS, you wont see any data successfully fetched. 
